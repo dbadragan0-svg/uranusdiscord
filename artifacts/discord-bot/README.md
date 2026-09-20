@@ -20,7 +20,7 @@ src/
 ├── modules/
 │   ├── exchange-system/       # Pregătit pentru Exchange System
 │   ├── giveaway-system/       # Pregătit pentru Giveaway System
-│   ├── ticket-system/         # Pregătit pentru Ticket System
+│   ├── ticket-system/         # Ticket System
 │   └── types.ts               # Contractul unui modul
 ├── lib/
 │   └── logger.ts              # Logger minimal
@@ -44,6 +44,26 @@ Fără `DISCORD_TOKEN`, botul se oprește intenționat cu un mesaj clar. Tokenul
 ## Comanda inclusă
 
 - `/ping` — verifică dacă botul răspunde.
+- `/ticket setup` — trimite panelul pentru crearea ticketelor.
+
+## Configurarea Ticket System
+
+1. Creează un rol dedicat pentru staff, de exemplu `Support`.
+2. Asigură-te că botul are cel puțin:
+   - `View Channels`
+   - `Send Messages`
+   - `Read Message History`
+   - `Embed Links`
+   - `Manage Channels`
+3. Un membru cu `Manage Server` rulează în canalul dorit:
+
+```text
+/ticket setup staff_role:@Support category:#Tickets
+```
+
+`category` este opțională. Panelul este trimis în canalul în care rulezi comanda, iar ticketele noi devin vizibile doar pentru utilizatorul care le-a creat, rolul staff ales și bot.
+
+Fiecare utilizator poate avea un singur ticket activ. Utilizatorul și staff-ul pot apăsa `🔒 Închide Ticket` pentru ștergerea canalului.
 
 ## Extindere
 

@@ -27,20 +27,21 @@ Structura de bază pentru un bot Discord Node.js/TypeScript construit cu Discord
 
 - `artifacts/discord-bot/src/index.ts` — bot startup and lifecycle
 - `artifacts/discord-bot/src/commands/` — slash commands and command registry
-- `artifacts/discord-bot/src/modules/` — future Ticket, Giveaway, and Exchange modules
+- `artifacts/discord-bot/src/modules/` — Ticket, Giveaway, and Exchange modules
 - `artifacts/discord-bot/src/config/env.ts` — environment configuration and validation
 - `artifacts/discord-bot/README.md` — bot setup and extension guide
 
 ## Architecture decisions
 
-- The bot is isolated in its own workspace package so future Discord features do not mix with the existing API server.
-- Slash commands use a central registry and modules expose their own commands/events, keeping future systems independent.
+- The bot is isolated in its own workspace package so Discord features do not mix with the existing API server.
+- Slash commands use a central registry and modules expose their own commands/events, keeping systems independent.
 - The bot uses only the `Guilds` intent initially; additional privileged intents should be added only when a feature needs them.
 - Command registration is opt-in through `REGISTER_COMMANDS_ON_STARTUP` and can target a development guild for faster iteration.
+- Ticket panels carry their selected staff role and category in the button custom ID, so the first Ticket System version does not need a database.
 
 ## Product
 
-Custom Discord bot foundation for a future Ticket System, Giveaway System, and Exchange System.
+ Custom Discord bot with Ticket System foundation and prepared Giveaway and Exchange modules.
 
 ## User preferences
 

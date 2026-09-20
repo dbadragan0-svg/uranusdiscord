@@ -1,9 +1,9 @@
 import type { BotModule } from "../types.js";
+import { ticketCommand } from "./command.js";
+import { registerTicketEvents } from "./handlers.js";
 
 export const ticketSystem: BotModule = {
   name: "Ticket System",
-  commands: [],
-  registerEvents() {
-    // Ticket events will be registered here when the module is implemented.
-  },
+  commands: [ticketCommand],
+  registerEvents: registerTicketEvents,
 };
