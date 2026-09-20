@@ -106,9 +106,9 @@ async function setupTicketPanel(
   const embed = new EmbedBuilder()
     .setColor(0x5865f2)
     .setDescription(`#  —  __UranusMarket™__ Support Ticket***
-##📜・__Support Tickets__:
+## 📜・__Support Tickets__:
 🏷️ Ai o problemă, o întrebare sau ai nevoie de ajutor? Deschide un ticket pentru a lua legătura direct cu echipa noastră.*
-##🎁・__Claim Rewards__:
+## 🎁・__Claim Rewards__:
 Revendică recompensele disponibile sau solicită ajutor dacă întâmpini probleme cu primirea acestora.*
 ## ⚠️ • __Report a User__:
 Raportează un utilizator pentru scam, comportament necorespunzător sau încălcarea regulilor serverului. Te rugăm să ai dovezi relevante.*
