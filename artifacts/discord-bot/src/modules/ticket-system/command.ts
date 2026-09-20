@@ -105,11 +105,14 @@ async function setupTicketPanel(
   const row = new ActionRowBuilder<ButtonBuilder>().addComponents(button);
   const embed = new EmbedBuilder()
     .setColor(0x5865f2)
-    .setTitle("🎫 Suport")
-    .setDescription(
-      "Ai nevoie de ajutor? Apasă butonul de mai jos pentru a deschide un ticket privat cu echipa de suport.",
-    )
-    .setFooter({ text: "Un singur ticket activ per utilizator." });
+    .setDescription(`#  —  __UranusMarket™__ Support Ticket***
+##📜・__Support Tickets__:
+🏷️ Ai o problemă, o întrebare sau ai nevoie de ajutor? Deschide un ticket pentru a lua legătura direct cu echipa noastră.*
+##🎁・__Claim Rewards__:
+Revendică recompensele disponibile sau solicită ajutor dacă întâmpini probleme cu primirea acestora.*
+## ⚠️ • __Report a User__:
+Raportează un utilizator pentru scam, comportament necorespunzător sau încălcarea regulilor serverului. Te rugăm să ai dovezi relevante.*
+-# 〃UranusMarket ©, All Rights Reserved`);
 
   await interaction.reply({
     embeds: [embed],
