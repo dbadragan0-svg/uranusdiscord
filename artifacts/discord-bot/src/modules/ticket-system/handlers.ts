@@ -7,6 +7,7 @@ import {
   Events,
   PermissionFlagsBits,
   type ButtonInteraction,
+  type ChatInputCommandInteraction,
   type Client,
 } from "discord.js";
 import { logger } from "../../lib/logger.js";
@@ -30,7 +31,7 @@ export function registerTicketEvents(client: Client): void {
       if (isTicketCreateInteraction(interaction)) {
         await handleCreateTicket(interaction, client);
       } else if (interaction.customId === TICKET_CLOSE_CUSTOM_ID) {
-        await handleCloseTicket(interaction);
+        await closeTicketInteraction(interaction);
       }
     } catch (error) {
       logger.error("Ticket interaction failed.", {
@@ -194,8 +195,8 @@ async function handleCreateTicket(
   });
 }
 
-async function handleCloseTicket(
-  interaction: ButtonInteraction,
+export async function closeTicketInteraction(
+  interaction: ButtonInteraction | ChatInputCommandInteraction,
 ): Promise<void> {
   if (
     !interaction.inGuild() ||

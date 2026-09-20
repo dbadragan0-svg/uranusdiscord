@@ -10,6 +10,7 @@ import {
 import { SlashCommandBuilder } from "discord.js";
 import type { BotCommand } from "../../commands/types.js";
 import { createTicketButtonId } from "./constants.js";
+import { closeTicketInteraction } from "./handlers.js";
 
 export const ticketCommand: BotCommand = {
   data: new SlashCommandBuilder()
@@ -33,9 +34,21 @@ export const ticketCommand: BotCommand = {
             .addChannelTypes(ChannelType.GuildCategory)
             .setRequired(false),
         ),
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("close")
+        .setDescription("Închide ticketul în care te afli."),
     ),
   async execute(interaction) {
-    await setupTicketPanel(interaction);
+    if (interaction.options.getSubcommand() === "setup") {
+      await setupTicketPanel(interaction);
+      return;
+    }
+
+    if (interaction.options.getSubcommand() === "close") {
+      await closeTicketInteraction(interaction);
+    }
   },
 };
 

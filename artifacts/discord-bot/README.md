@@ -45,6 +45,7 @@ Fără `DISCORD_TOKEN`, botul se oprește intenționat cu un mesaj clar. Tokenul
 
 - `/ping` — verifică dacă botul răspunde.
 - `/ticket setup` — trimite panelul pentru crearea ticketelor.
+- `/ticket close` — închide ticketul în canalul curent după validarea canalului.
 
 ## Configurarea Ticket System
 

@@ -1,4 +1,4 @@
-import { Events, type Client } from "discord.js";
+import { Events, MessageFlags, type Client } from "discord.js";
 import { logger } from "../lib/logger.js";
 import { findCommand } from "../modules/index.js";
 
@@ -32,9 +32,25 @@ export function registerInteractionHandler(client: Client): void {
       };
 
       if (interaction.replied || interaction.deferred) {
-        await interaction.followUp(response);
+        await interaction.followUp(response).catch((replyError: unknown) => {
+          logger.warn("Could not send command error follow-up.", {
+            error:
+              replyError instanceof Error
+                ? replyError.message
+                : String(replyError),
+          });
+        });
       } else {
-        await interaction.reply(response);
+        await interaction
+          .reply({ ...response, flags: MessageFlags.Ephemeral })
+          .catch((replyError: unknown) => {
+            logger.warn("Could not send command error reply.", {
+              error:
+                replyError instanceof Error
+                  ? replyError.message
+                  : String(replyError),
+            });
+          });
       }
     }
   });
