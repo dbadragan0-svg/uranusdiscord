@@ -12,6 +12,11 @@ import type { BotCommand } from "../../commands/types.js";
 import { createTicketButtonId } from "./constants.js";
 import { closeTicketInteraction } from "./handlers.js";
 
+const SUPPORT_HEADER_GIF =
+  "https://share.creavite.co/6ab0186053f3c2975ec2246f.gif";
+const SUPPORT_FOOTER_GIF =
+  "https://share.creavite.co/6ab018d753f3c2975ec22470.gif";
+
 export const ticketCommand: BotCommand = {
   data: new SlashCommandBuilder()
     .setName("ticket")
@@ -103,19 +108,23 @@ async function setupTicketPanel(
     .setStyle(ButtonStyle.Primary);
 
   const row = new ActionRowBuilder<ButtonBuilder>().addComponents(button);
-  const embed = new EmbedBuilder()
+  const headerEmbed = new EmbedBuilder()
     .setColor(0x5865f2)
-    .setDescription(`#  —  __UranusMarket™__ Support Ticket***
-## 📜・__Support Tickets__:
+    .setDescription("#  —  __UranusMarket™__ Support Ticket***")
+    .setImage(SUPPORT_HEADER_GIF);
+  const contentEmbed = new EmbedBuilder()
+    .setColor(0x5865f2)
+    .setDescription(`## 📜・__Support Tickets__:
 🏷️ Ai o problemă, o întrebare sau ai nevoie de ajutor? Deschide un ticket pentru a lua legătura direct cu echipa noastră.*
 ## 🎁・__Claim Rewards__:
 Revendică recompensele disponibile sau solicită ajutor dacă întâmpini probleme cu primirea acestora.*
 ## ⚠️ • __Report a User__:
 Raportează un utilizator pentru scam, comportament necorespunzător sau încălcarea regulilor serverului. Te rugăm să ai dovezi relevante.*
--# 〃UranusMarket ©, All Rights Reserved`);
+-# 〃UranusMarket ©, All Rights Reserved`)
+    .setImage(SUPPORT_FOOTER_GIF);
 
   await interaction.reply({
-    embeds: [embed],
+    embeds: [headerEmbed, contentEmbed],
     components: [row],
   });
 }
